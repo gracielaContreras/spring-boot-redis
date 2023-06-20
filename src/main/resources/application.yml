@@ -1,0 +1,40 @@
+server:
+  port: 8080
+  contextPath: /${spring.application.name}
+  servlet:
+    context-path: /${spring.application.name}
+  error:
+    include-message: always
+    include-exception: true
+
+spring:
+  application:
+    name: spring-boot-redis
+  datasource:
+    username: postgres
+    password:
+    url: jdbc:postgresql://localhost:5432/course
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+      database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+logging:
+  level:
+    org:
+      springframework:
+        web: INFO
+        boot:
+          autoconfigure:
+            security: WARN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
